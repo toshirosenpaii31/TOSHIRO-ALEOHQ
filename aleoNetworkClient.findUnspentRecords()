@@ -1,0 +1,12 @@
+// Find all unspent records
+const privateKey = "[PRIVATE_KEY]";
+let records = connection.findUnspentRecords(0, undefined, privateKey);
+
+// Find specific amounts
+const startHeight = 500000;
+const amounts = [600000, 1000000];
+let records = connection.findUnspentRecords(startHeight, undefined, privateKey, amounts);
+
+// Find specific amounts with a maximum number of cumulative microcredits
+const maxMicrocredits = 100000;
+let records = connection.findUnspentRecords(startHeight, undefined, privateKey, undefined, maxMicrocredits);
