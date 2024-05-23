@@ -1,0 +1,1 @@
+let mappings = connection.getProgramMappingNames("credits.aleo");
