@@ -1,0 +1,1 @@
+let block = connection.getBlock(1234);
