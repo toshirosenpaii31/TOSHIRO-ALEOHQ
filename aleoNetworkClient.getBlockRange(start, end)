@@ -1,0 +1,1 @@
+let blockRange = connection.getBlockRange(2050, 2100);
