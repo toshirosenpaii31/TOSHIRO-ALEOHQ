@@ -1,0 +1,2 @@
+let account = new Account();
+connection.setAccount(account);
