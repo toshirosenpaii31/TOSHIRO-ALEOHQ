@@ -1,0 +1,70 @@
+git clone https://github.com/liolikus/aleo_vanillajs_api_usage.git
+cd aleo_vanillajs_api_usage
+npm i
+npm run dev
+
+Now we can open http://localhost:5173/ and see the App
+So, let’s check how it works.
+
+Open the console and tap “Get Latest Height”
+So we call Aleo Network and get the latest block height value
+Code example:
+
+ let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+    let latestHeight = await public_connection.getLatestHeight();
+    return latestHeight;
+
+Let’s move on
+If we want to get all the info about transactions, we can call aleoNetworkClient.getTransaction(id) method
+
+Code:
+let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+    let getTransaction = await public_connection.getTransaction("at1549phr9hzgzgan4e86qmqjx7jfct8dlu3zmwuhl2glmtdjt78grqluvgf7");//tx_id
+    return getTransaction;
+
+Let’s check aleoNetworkClient.getLatestBlock()
+
+let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+    let latestBlock = await public_connection.getLatestBlock();
+    return latestBlock;
+
+Get Program code by ID
+
+   let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+    let getProgram = await public_connection.getProgram("the_liolik_t.aleo");//Program ID
+    return getProgram;
+
+The balance is stored in mappings in credits.aleo Program:
+https://explorer.aleo.org/program/credits.aleo
+
+As we can see, credits.aleo have 4 mappings:
+
+0: “committee”
+
+1: “bonded”
+
+2: “unbonding”
+
+3: “account"
+
+let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+    let getProgramMappingNames = await public_connection.getProgramMappingNames("credits.aleo");//Program ID
+    return getProgramMappingNames;
+
+account is what we looking for
+
+So let’s call credits.aleo where “account” is the key
+
+115507132u64 means that the account has 115.5 Aleo Credits (1 Credit = 1kk microcredits)
+
+code:
+
+let public_connection = new AleoNetworkClient("https://api.explorer.aleo.org/v1");
+    let programId = "credits.aleo";
+    let mappingName = "account";
+    let key = "aleo1xvlh6eyf5lgfv2z5za47j6qkh3uv5e0ga6gdzg5l4rssheymxsqqsnkgc4";
+    let getMappingValue = await public_connection.getProgramMappingValue(programId, mappingName, key);//programId, mappingName, key (e.g. wallet address)
+    return getMappingValue;
+
+Congratulations! Now, we have learned to use Aleo Network Client!
+
